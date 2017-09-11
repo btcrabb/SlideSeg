@@ -1,0 +1,17 @@
+name: SlideSeg
+channels:
+- conda-forge
+- defaults
+dependencies:
+- python=2.7
+- numpy
+- tqdm
+- ipykernel
+- nb_conda
+- PIL
+- setuptools
+- pip:
+  - openslide-python
+  - opencv-python
+  - pexif
+
