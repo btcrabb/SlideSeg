@@ -90,7 +90,7 @@ After launching the Jupyter Notebook App, navigate to the SlideSeg notebook and 
 
 ### 3. Setup <a class ="anchor" id="3."></a>
 
-   Copy all of the slide images into the images folder in the main project directory. Copy the markup and annotation files (in .xml format) into the xml folder in the main project directory. It is important that the annotation files have the same file name as the slide they are associated with. <br>
+Create a folder called 'images/' in the main directory and copy all of the slide images into this folder. Copy the markup and annotation files (in .xml format) into the xml folder in the main project directory. It is important that the annotation files have the same file name as the slide they are associated with. <br>
    
 ##### 3.1 Supported Formats <a class ="anchor" id="3.1"></a>
 
