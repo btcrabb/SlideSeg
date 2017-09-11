@@ -1,0 +1,13 @@
+single_slide: False                     # True if using one image only, False if a folder of images is being used
+slide_path: images/                     # path to the folder of slide images
+xml_path: xml/                          # path to the folder of xml files
+output_dir: output/                     # path to the output folder where image_chips, image_masks, and text_files will be saved
+format: jpg                             # output format of the image_chips and image_masks
+quality: 95                             # output quality: JPEG compression if output format is 'jpg' (100 recommended, jpg compression artifacts will distort image segmentation)
+size: 128                               # size of image_chips and image_masks
+overlap: 1                              # pixel overlap between image chips
+key: Annotation_Key.txt                 # the text file containing annotation keys and color codes
+save_all: False                         # True saves every image_chip, False only saves chips containing an annotated pixel
+save_ratio: inf                         # Ratio of image_chips containing annotations to image_chips not containing annotations (use 'inf' if only annotated chips are desired; only applicable if save_all == False)
+print: 0                                # Suppress print output for chips/textfiles (1 = print, 0 = suppress output)
+tags: 1                                 # Label images with key tags for sorting (1 = tags, 0 = no tags)
