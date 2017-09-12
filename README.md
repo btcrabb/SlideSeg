@@ -5,7 +5,7 @@ Created August 1, 2017 <br>
 Author: Brendan Crabb <brendancrabb8388@pointloma.edu> 
 <hr>
 
-Welcome to SlideSeg, a python script that allows you to segment whole slide images into usable image
+Welcome to SlideSeg, a python module that allows you to segment whole slide images into usable image
 chips for deep learning. Image masks for each chip are generated from associated markup and annotation files.
 
 ## Table of Contents
@@ -135,13 +135,7 @@ SlideSeg can read annotations in the following formats: <br>
 <b>save_all:</b> True saves every image_chip, False only saves chips containing an annotated pixel <br>
 
 <b>save_ratio:</b> Ratio of image_chips containing annotations to image_chips not containing annotations (use 'inf' if only annotated chips are desired; only applicable if save_all == False <br>
-
-<b>printout:</b> Suppress or print outputs.  If printout == 1, the filename will be printed to the terminal if an image chip is saved. If printout == 0, the print function is suppressed <br>
-
-<b>tags:</b> Write annotation key tags to image xmp metadata.  If tags == 1, tags are enabled.  If tags == 0, the tags are disabled. <br>
 </p>
-
-
    
 ##### 3.3 Annotation Key <a class ="anchor" id="3.3"></a>
 
@@ -149,171 +143,199 @@ SlideSeg can read annotations in the following formats: <br>
 
    The Annotation_Key file contains every annotation key with its associated color code. In all image masks, annotations with that key will have the specified pixel value.  If an unknown key is encountered, it will be given a pixel value and added to the Annotation_Key automatically. <br>
    
-   the AnnotationKey class generates and loads color codes from an annotation key. It contains the following functions: <br>
-   
-<code><b>class AnnotationKey</b>(object)</code>
-   
-<code>\__init\__(self, annotation_key)</code>
-> Generates and loads color codes form annotation key <br>
-
-> :param annotation_key:
-   
-<code>load_keys(self)</code> <br>
-
-> Opens annotation_key file and loads keys and color codes <br>
-
-> :return: color codes <br>
-
-<code>add_keys(self, key)</code> <br>
-
-> Adds new key and color_code to annotaiton key <br>
-
-> :param key: The annotation to be added <br>
-> :return: updated annotation key file <br>
-
-<code>write_annotation_keys(self, annotations)</code> <br>
-
-> Writes annotation keys and color codes to text file <br>
-
-> :param annotations: Dictionary of annotation keys and color codes <br>
-> :return: .txt file with annotation keys <br>
-
-<code>generate_key(self, path)</code> <br>
-
-> Generates annotation_key from folder of xml files <br>
-
-> :param path: Directory containing xml files <br>
-> :return: annotation_key file <br>
+    The following functions are defined within the slideseg module and used to generate, edit, and read the annotation key:<br>
+<code>
+def loadkeys(annotation_key):
+    """
+    Opens annotation_key file and loads keys and color codes
+    :param: annotation_key: the filename of the annotation key
+    :return: color codes
+    """
+    
+def addkeys(annotation_key, key):
+    """
+    Adds new key and color_code to annotation key
+    :param annotation_key: the filename of the annotation key
+    :param key: The annotation to be added
+    :return: updated annotation key file
+    """
+    
+ def writeannotations(annotation_key, annotations):
+    """
+    Writes annotation keys and color codes to annotation key text file
+    :param annotation_key: filename of annotation key
+    :param annotations: Dictionary of annotation keys and color codes
+    :return: .txt file with annotation keys
+    """
+    
+def generatekey(annotation_key, path):
+    """
+    Generates annotation_key from folder of xml files
+    :param annotation_key: the name of the annotation key file
+    :param path: Directory containing xml files
+    :return: annotation_key file
+    """
+</code>
 
 ### 5. Output <a class ="anchor" id="5."></a>
 
 ##### 5.1 Image<span>&#95;</span>chips <a class ="anchor" id="5.1"></a>
 Every generated image chip will be saved in the _output/image<span>&#95;</span>chips_ folder. The chips are saved with the naming convention of _slide filename<span>&#95;</span>level number<span>&#95;</span>row<span>&#95;</span>column.format_. If the chip contains an area that was annotated and the tags are enabled, it will have an associated tag (under the Subject category) with the annotation key. If the image chip does not contain annotations, the 'NONE' tag will be added. To view these tags, switch to details view and click display 'Subject' in the explorer. The files can be sorted according to their tags. Unfortunately, these tags will only be available if the output format is .jpg. <br>
 
-The OutputSave class saves both the image chips and image masks, as well as attaching exif metadata to the images. It contains the following functions:
+The following functions are defined in the slideseg module and are used to save both the image chips and image masks, as well as attaching exif metadata to the images:
 
-<code><b>class OutputSave</b>(object)</code>
+<code>
+def ensuredirectory(dest):
+    """
+    Ensures the existence of a directory
+    :param dest: Directory to ensure.
+    :return: new directory if it did not previously exist.
+    """
 
-<code>\__init\__(self, keys, print_save, tags)</code> <br>
+def attachtags(path, keys):
+    """
+    Attaches image tags to metadata of chips and masks
+    :param path: file to attach tags to.
+    :param keys: keys to attach as tags
+    :return: JPG with metadata tags
+    """
 
-> Save image chips and image masks
+def savechip(chip, path, quality, keys):
+    """
+    Saves the image chip
+    :param chip: the slide image chip to save
+    :param path: the full path to the chip
+    :param quality: the output quality
+    :param keys: keys associated with the chip
+    :return:
+    """
 
-> :param keys: <br>
-> :param print_save: <br>
-> :param tags: <br>
+def savemask(mask, path, keys):
+    """
+    Saves the image masks
+    :param mask: the image mask to save
+    :param path: the complete path for the mask
+    :param keys: keys associated with the chip
+    :return:
+    """
 
-<code>ensure_dir(self, directory)</code> <br>
+def checksave(save_all, pix_list, save_ratio, save_count_annotated, save_count_blank):
+    """
+    Checks whether or not an image chip should be saved
+    :param save_all: (bool) saves all chips if true
+    :param pix_list: list of pixel values in image mask
+    :param save_ratio: ratio of annotated chips to unannotated chips
+    :param save_count_annotated: total annotated chips saved
+    :param save_count_blank: total blank chips saved
+    :return: bool
+    """
 
-> Ensures the existence of a directory <br>
+def formatcheck(format):
+    """
+    Assures correct format parameter was defined correctly
+    :param format: the output format parameter
+    :return: format
+    :return: suffix
+    """
+</code>
 
-> :param dest: Directory to ensure. <br>
-> :return: new directory if it did not previously exist. <br>
+The following functions are defined in the slideseg module and are used to save both the image chips and image masks, as well as attaching exif metadata to the images:
 
-<code>attach_tages(self)</code> <br>
+<code>
+def ensuredirectory(dest):
+    """
+    Ensures the existence of a directory
+    :param dest: Directory to ensure.
+    :return: new directory if it did not previously exist.
+    """
 
-> Attaches image tags to metadata of chips and masks <br>
+def attachtags(path, keys):
+    """
+    Attaches image tags to metadata of chips and masks
+    :param path: file to attach tags to.
+    :param keys: keys to attach as tags
+    :return: JPG with metadata tags
+    """
 
-> :param path: file to attach tags to. <br>
-> :return: JPG with metadata tags<br>
+def savechip(chip, path, quality, keys):
+    """
+    Saves the image chip
+    :param chip: the slide image chip to save
+    :param path: the full path to the chip
+    :param quality: the output quality
+    :param keys: keys associated with the chip
+    :return:
+    """
 
-<code>save_chip(self, chip, path, quality)</code> <br>
+def savemask(mask, path, keys):
+    """
+    Saves the image masks
+    :param mask: the image mask to save
+    :param path: the complete path for the mask
+    :param keys: keys associated with the chip
+    :return:
+    """
 
-> Saves the image chips <br>
+def checksave(save_all, pix_list, save_ratio, save_count_annotated, save_count_blank):
+    """
+    Checks whether or not an image chip should be saved
+    :param save_all: (bool) saves all chips if true
+    :param pix_list: list of pixel values in image mask
+    :param save_ratio: ratio of annotated chips to unannotated chips
+    :param save_count_annotated: total annotated chips saved
+    :param save_count_blank: total blank chips saved
+    :return: bool
+    """
 
-> :param chip: the slide image chip to save<br>
-> :param path: the full path to the chip<br>
-> :param quality: the output quality<br>
-
-<code>save_mask(self, mask, path)</code><br>
-
-> Saves the image mask <br>
-
-> :param mask: the image mask to save<br>
-> :param path: the complete path for the mask<br>
-
-The main functionality of SlideSeg is performed by the ChipGenerator class. This class takes all of the inputs specified in parameters and uses it to generate image chips and image masks. It contains the following functions:
-
-<code><b>class ChipGenerator</b>(object)</code>
-
-<code>\__init\__(self, params)</code> <br>
-
-> Generates image chips and masks from whole slides <br>
-
-> :param params: the parameters specified in the parameters file
- 
-<code>open_slide(self, filename)</code> <br>
-
-> Opens a whole slide image <br>
-
-> :param filename: Slide image name. <br>
-> :return: slide image, levels, and dimensions <br>
-
-<code>curate_mask(self, mask, scale_width, scale_height)</code> <br>
-
-> Resize and pad annotation mask if necessary <br>
-
-> :param mask: <br>
-> :param scale_width: <br>
-> :param scale_height: <br>
-> :return: curated annotation mask <br>
-
-<code>get_chips(self, levels, dims, mask, annotations, filename, suffix)</code> <br>
-
-> Finds chip locations that should be loaded and saved. <br>
-
-> :param levels: levels in whole slide image <br>
-> :param dims: dimension of whole slide image <br>
-> :param mask: annotation mask for slide image <br>
-> :param annotations: dictionary of annotations in image <br>
-> :param filename: slide image filename <br>
-> :param suffix: output format for saving. <br>
-> :return: chip_dict. Dictionary of chip names, level, col, row, and scale <br>
-> :return: image_dict. Dictionary of annotations and chips with those annotations <br>
+def formatcheck(format):
+    """
+    Assures correct format parameter was defined correctly
+    :param format: the output format parameter
+    :return: format
+    :return: suffix
+    """
+</code>
 
 ##### 5.2 Image<span>&#95;</span>masks <a class ="anchor" id="5.2"></a>
 An image mask for each image chip is saved in the _output/image<span>&#95;</span>masks folder_. The mask has the same name as the image chip it is associated with. Furthermore, these masks will have the same tags, allowing you to sort by annotation type. <br>
 
-The class AnnotationMask handles the generation of an annotation mask from xml files. It contains the following functions: <br>
+The following function handles the generation of an annotation mask from xml files: <br>
 
-<code><b>class AnnotationMask</b>(object)</code>
-
-<code>\__init\__(self, xml_filename, xml_path, size)</code> <br>
-
-> Returns vertex points for annotations in xml file with their assigned keys <br>
-
-> :param xml_filename: The xml file that contains the annotations <br>
-> :param xml_path: Path to the xml file that contains the annotations <br>
-> :param size: Size of corresponding slide image <br>  
-
-<code>annotations(self)</code> <br>
-
-> Reads xml file and makes annotation mask for entire slide image <br>
-
-> :return: annotation mask <br>
-> :return: dictionary of annotation keys and color codes<br>
+<code>
+def makemask(annotation_key, size, xml_path):
+    """
+    Reads xml file and makes annotation mask for entire slide image
+    :param annotation_key: name of the annotation key file
+    :param size: size of the whole slide image
+    :param xml_path: path to the xml file
+    :return: annotation mask
+    :return: dictionary of annotation keys and color codes
+    """
+</code>
 
 ##### 5.3 Text Files <a class ="anchor" id="5.3"></a>
 A text file with details about annotations and image chips will also be saved to _output/textfiles_. For each slide image, this text file will contain a list of all annotation keys present in the image. For each annotation key, a list of every image chip/mask containing that specific key is also recorded in this file. <br>
 
-The TextOutput class generates these .txt files. it contains the following functions: <br>
+The following functions generates these .txt files: <br>
 
-<code><b>class TextOutput</b>(object)</code>
+<code>
+def writekeys(filename, annotations):
+    """
+    Writes each annotation key to the output text file
+    :param filename: filename of image chip
+    :param annotations: dictionary of annotation keys
+    :return: updated text file
+    """
 
-<code>\__init\__(self, filename, annotations)</code> <br>
-
-> Generates .txt file with image and annotation information <br>
-
-> :param filename: filename of corresponding slide image <br>
-> :param annotations: annotations contained in the slide image <br>
-
-<code>write_keys(self)</code> <br>
-
-> Writes each annotation key to the output text file. <br>
-
-<code>write_key_img_list(self)</code> <br>
-
-> Writes list of images containing each annotation key in the output .txt file<br>
+def writeimagelist(filename, image_dictionary):
+    """
+    Writes list of images containing each annotation key
+    :param filename: the name of the slide image
+    :param image_dictionary: dictionary of images with each key
+    :return text
+    """
+</code>
 
 ### 6. Run <a class ="anchor" id="6."></a>
 
-To execute SlideSeg, simply run the jupyter notebook cells. Alternatively, you can run the python script 'main.py'. Make sure that you defined the [Parameters](#3.2) above. If the python script is used, the parameters are specified in the Parameters.txt file. <br>
+To execute SlideSeg, simply open the jupyter notebook and run the cells. Alternatively, you can run the python script 'main.py'. Make sure that you defined the [Parameters](#3.2). If the python script is used, the parameters are specified in the Parameters.txt file. <br>
