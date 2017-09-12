@@ -143,9 +143,10 @@ SlideSeg can read annotations in the following formats: <br>
 
    The Annotation_Key file contains every annotation key with its associated color code. In all image masks, annotations with that key will have the specified pixel value.  If an unknown key is encountered, it will be given a pixel value and added to the Annotation_Key automatically. <br>
    
-    The following functions are defined within the slideseg module and used to generate, edit, and read the annotation key:<br>
-<code>
-def loadkeys(annotation_key):
+The following functions are defined within the slideseg module and used to generate, edit, and read the annotation key: <br>
+
+```
+<code>def loadkeys(annotation_key):
     """
     Opens annotation_key file and loads keys and color codes
     :param: annotation_key: the filename of the annotation key
@@ -175,7 +176,7 @@ def generatekey(annotation_key, path):
     :param path: Directory containing xml files
     :return: annotation_key file
     """
-</code>
+```
 
 ### 5. Output <a class ="anchor" id="5."></a>
 
@@ -184,20 +185,20 @@ Every generated image chip will be saved in the _output/image<span>&#95;</span>c
 
 The following functions are defined in the slideseg module and are used to save both the image chips and image masks, as well as attaching exif metadata to the images:
 
-<code>
-def ensuredirectory(dest):
-    """
-    Ensures the existence of a directory
+```
+def ensuredirectory(dest): 
+    """ 
+    Ensures the existence of a directory 
     :param dest: Directory to ensure.
-    :return: new directory if it did not previously exist.
-    """
+    :return: new directory if it did not previously exist. 
+    """ 
 
 def attachtags(path, keys):
     """
     Attaches image tags to metadata of chips and masks
     :param path: file to attach tags to.
     :param keys: keys to attach as tags
-    :return: JPG with metadata tags
+    :return: JPG with metadata tags 
     """
 
 def savechip(chip, path, quality, keys):
@@ -237,11 +238,11 @@ def formatcheck(format):
     :return: format
     :return: suffix
     """
-</code>
+```
 
 The following functions are defined in the slideseg module and are used to save both the image chips and image masks, as well as attaching exif metadata to the images:
 
-<code>
+```
 def ensuredirectory(dest):
     """
     Ensures the existence of a directory
@@ -294,14 +295,14 @@ def formatcheck(format):
     :return: format
     :return: suffix
     """
-</code>
+```
 
 ##### 5.2 Image<span>&#95;</span>masks <a class ="anchor" id="5.2"></a>
 An image mask for each image chip is saved in the _output/image<span>&#95;</span>masks folder_. The mask has the same name as the image chip it is associated with. Furthermore, these masks will have the same tags, allowing you to sort by annotation type. <br>
 
 The following function handles the generation of an annotation mask from xml files: <br>
 
-<code>
+```
 def makemask(annotation_key, size, xml_path):
     """
     Reads xml file and makes annotation mask for entire slide image
@@ -311,14 +312,14 @@ def makemask(annotation_key, size, xml_path):
     :return: annotation mask
     :return: dictionary of annotation keys and color codes
     """
-</code>
+```
 
 ##### 5.3 Text Files <a class ="anchor" id="5.3"></a>
 A text file with details about annotations and image chips will also be saved to _output/textfiles_. For each slide image, this text file will contain a list of all annotation keys present in the image. For each annotation key, a list of every image chip/mask containing that specific key is also recorded in this file. <br>
 
 The following functions generates these .txt files: <br>
 
-<code>
+```
 def writekeys(filename, annotations):
     """
     Writes each annotation key to the output text file
@@ -334,7 +335,7 @@ def writeimagelist(filename, image_dictionary):
     :param image_dictionary: dictionary of images with each key
     :return text
     """
-</code>
+```
 
 ### 6. Run <a class ="anchor" id="6."></a>
 
