@@ -13,13 +13,13 @@ chips for deep learning. Image masks for each chip are generated from associated
 
 1.    [Dependencies](#1.)  
 2.    [Anaconda Environment](#2.)  
-      2.1 [Creating environment from .yml file](#2.1)
-      2.2 [Installing C Libraries - Openslide (Windows)](#2.2)
-      2.3 [Installing C Libraries - Openslide (Mac OS X)](#2.3)
-      2.4 [Launching Jupyter Notebook](#2.4)
-      2.5 [Change Jupyter Notebook startup folder (Windows)](#2.5)
-      2.6 [Change Jupyter Notebook startup folder (OS X)](#2.6)
-      2.7 [Jupyter Kernel Selection](#2.7)
+      2.1 [Creating Environment from .yml File](#2.1)  
+      2.2 [Installing C Libraries - Openslide (Windows)](#2.2)  
+      2.3 [Installing C Libraries - Openslide (Mac OS X)](#2.3)  
+      2.4 [Launching Jupyter Notebook](#2.4)  
+      2.5 [Change Jupyter Notebook startup folder (Windows)](#2.5)  
+      2.6 [Change Jupyter Notebook startup folder (OS X)](#2.6)  
+      2.7 [Jupyter Kernel Selection](#2.7)  
 3.    [Setup](#3.)  
       3.1 [Supported Formats](#3.1)  
       3.2 [Parameters](#3.2)  
@@ -76,9 +76,15 @@ the conda environment, which contains all of the python dependencies.
 
 The Windows Binaries for OpenSlide can be found at 'openslide.org/download/'.
 Download the appropriate binaries for your system (either 32-bit or 64-bit) and
-unzip the file.  Copy the .dll files in ../bin/ to .../Anaconda/envs/SlideSeg/Library/bin/.
-Copy the .h files to .../Anaconda/envs/SlideSeg/include/. Finally, copy the
-.lib file to .../Anaconda/envs/SlideSeg/libs/.  OpenSlide has now been installed.
+unzip the file.  
+
+Copy the .dll files in ../bin/ to .../Anaconda/envs/SlideSeg/Library/bin/.
+
+Copy the .h files to .../Anaconda/envs/SlideSeg/include/. 
+
+Finally, copy the .lib file to .../Anaconda/envs/SlideSeg/libs/.  
+
+OpenSlide has now been installed.
 
 ##### 2.3 Installing C Libraries - Openslide (Mac OS X)  <a class ="anchor" id="2.3"></a>
 
