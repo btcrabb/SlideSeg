@@ -13,10 +13,13 @@ chips for deep learning. Image masks for each chip are generated from associated
 
 1.    [Dependencies](#1.)  
 2.    [Anaconda Environment](#2.)  
-      2.1 [Creating environment from .yml file](#2.1)  
-      2.2 [Change Jupyter Notebook startup folder (Windows)](#2.2)  
-      2.3 [Change Jupyter Notebook startup folder (OS X)](#2.3)  
-      2.4 [Jupyter Kernel Selection](#2.4)
+      2.1 [Creating Environment from .yml File](#2.1)  
+      2.2 [Installing C Libraries - Openslide (Windows)](#2.2)  
+      2.3 [Installing C Libraries - Openslide (Mac OS X)](#2.3)  
+      2.4 [Launching Jupyter Notebook](#2.4)  
+      2.5 [Change Jupyter Notebook startup folder (Windows)](#2.5)  
+      2.6 [Change Jupyter Notebook startup folder (OS X)](#2.6)  
+      2.7 [Jupyter Kernel Selection](#2.7)  
 3.    [Setup](#3.)  
       3.1 [Supported Formats](#3.1)  
       3.2 [Parameters](#3.2)  
@@ -66,26 +69,60 @@ Creating the environment might take a few minutes. Once finished, issue the foll
 
 If the environment was activated successfully, you should see (SlideSeg) at the beggining of the command prompt. This will set the SlideSeg kernel as your default kernel when running jupyter. 
 
+##### 2.2 Installing C Libraries - Openslide (Windows)  <a class ="anchor" id="2.2"></a>
+
+OpenSlide is a C library; as a result, it has to be installed separately from
+the conda environment, which contains all of the python dependencies.
+
+The Windows Binaries for OpenSlide can be found at 'openslide.org/download/'.
+Download the appropriate binaries for your system (either 32-bit or 64-bit) and
+unzip the file.  
+
+Copy the .dll files in ../bin/ to .../Anaconda/envs/SlideSeg/Library/bin/.
+
+Copy the .h files to .../Anaconda/envs/SlideSeg/include/. 
+
+Finally, copy the .lib file to .../Anaconda/envs/SlideSeg/libs/.  
+
+OpenSlide has now been installed.
+
+##### 2.3 Installing C Libraries - Openslide (Mac OS X)  <a class ="anchor" id="2.3"></a>
+
+OpenSlide is a C library; as a result, it has to be installed separately from
+the conda environment, which contains all of the python dependencies.
+
+If you are using MacPorts, simply enter the following in the terminal:
+
+<code>port install openslide</code>
+
+If you are using Homebrew, enter the following in the terminal:
+
+<code>brew install openslide</code>
+
+OpenSlide should now be installed in your anaconda environment.
+
+##### 2.4 Launching Jupyter Notebook  <a class ="anchor" id="2.4"></a>
+
 The Jupyter Notebook App can be launched by clicking on the Jupyter Notebook icon installed by Anaconda in the start menu (Windows) or by typing in the terminal (cmd on Windows): 
 
 <code>jupyter notebook</code>
 
 This will launch a new browser window showing the Notebook Dashboard.  When started, the Jupyter Notebook app can only access files within its start-up folder.  If you stored the SlideSeg notebook documents in a subfolder of your user folder, no configuration is necessary.  Otherwise, you need to change your Jupyter Notebook App start-up folder.  
 
-#####  2.2 Change Jupyter Notebook startup folder (Windows) <a class ="anchor" id="2.2"></a>
+#####  2.5 Change Jupyter Notebook startup folder (Windows) <a class ="anchor" id="2.5"></a>
 
 * Copy the *Jupyter Notebook* launcher from the menu to the desktop. <br>
 * Right click on the new launcher, select properties, and change the *Target field*, change %USERPROFILE% to the full path of the folder which will contain all the notebooks. <br>
 * Double-click on the *Jupyter Notebook* desktop launcher (icon shows [IPy]) to start the Jupyter Notebook App, which will open in a new browser window (or tab). Note also that a secondary terminal window (used only for error logging and for shut down) will be also opened. If only the terminal starts, try opening this address with your browser: http://localhost:8888/. <br>
 
-##### 2.3 Change Jupyter Notebook startup folder (OS X) <a class ="anchor" id="2.3"></a>
+##### 2.6 Change Jupyter Notebook startup folder (OS X) <a class ="anchor" id="2.6"></a>
 To launch Jupyter Notebook App:
 
 * Click on spotlight, type terminal to open a terminal window.
 * Enter the startup folder by typing cd /some_folder_name.
 * Type jupyter notebook to launch the Jupyter Notebook App (it will appear in a new browser window or tab). <br>
 
-##### 2.4 Jupyter Kernel Selection <a class ="anchor" id = "2.4"></a>
+##### 2.7 Jupyter Kernel Selection <a class ="anchor" id = "2.7"></a>
 After launching the Jupyter Notebook App, navigate to the SlideSeg notebook and click on its name to open in a new browser tab. In the upper right corner, you should see  Python [conda env:SlideSeg].  If not, click on Kernel> Change Kernel> and change your current kernel to Python [conda env:SlideSeg]. 
 
 ### 3. Setup <a class ="anchor" id="3."></a>
