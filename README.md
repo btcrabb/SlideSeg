@@ -14,8 +14,8 @@ chips for deep learning. Image masks for each chip are generated from associated
 1.    [Dependencies](#1.)  
 2.    [Anaconda Environment](#2.)  
       2.1 [Creating Environment from .yml File](#2.1)  
-      2.2 [Installing C Libraries - Openslide (Windows)](#2.2)  
-      2.3 [Installing C Libraries - Openslide (Mac OS X)](#2.3)  
+      2.2 [Installing C Libraries (Windows)](#2.2)  
+      2.3 [Installing C Libraries (Mac OS X)](#2.3)  
       2.4 [Launching Jupyter Notebook](#2.4)  
       2.5 [Change Jupyter Notebook startup folder (Windows)](#2.5)  
       2.6 [Change Jupyter Notebook startup folder (OS X)](#2.6)  
@@ -42,14 +42,11 @@ SlideSeg runs on Python 2.7 and depends on the following libraries: <br>
  * numpy <br>
  * pexif 0.15 <br>
 
-The libraries can be installed using the following sources: <br>
- * openslide:  pip install openslide-python <br>
- * tqdm:       conda install -c conda-forge tqdm <br>
- * numpy:      conda install -c anaconda numpy <br>
- * cv2:        pip install opencv-python <br>
- * pexif:      pip install pexif<br>
+The libraries can be installed using:
+
+<code>pip install slideseg</code>
  
-If you are using the preconfigured SlideSeg anaconda environment, these dependencies will already be installed.  <br>
+If you are using the preconfigured SlideSeg anaconda environment, these dependencies will already be installed. SlideSeg also depends on several C libraries; see section [2.2](#2.2) (windows) and section [2.3](#2.2) (Mac OS X) for installation instructions.  <br>
 
 ### 2. Anaconda Environment <a class ="anchor" id="2."></a>
 
@@ -69,9 +66,9 @@ Creating the environment might take a few minutes. Once finished, issue the foll
 
 If the environment was activated successfully, you should see (SlideSeg) at the beggining of the command prompt. This will set the SlideSeg kernel as your default kernel when running jupyter. 
 
-##### 2.2 Installing C Libraries - Openslide (Windows)  <a class ="anchor" id="2.2"></a>
+##### 2.2 Installing C Libraries (Windows)  <a class ="anchor" id="2.2"></a>
 
-OpenSlide is a C library; as a result, it has to be installed separately from
+OpenSlide and OpenCV are C libraries; as a result, they have to be installed separately from
 the conda environment, which contains all of the python dependencies.
 
 The Windows Binaries for OpenSlide can be found at 'openslide.org/download/'.
@@ -86,20 +83,22 @@ Finally, copy the .lib file to .../Anaconda/envs/SlideSeg/libs/.
 
 OpenSlide has now been installed.
 
-##### 2.3 Installing C Libraries - Openslide (Mac OS X)  <a class ="anchor" id="2.3"></a>
+Use the following tutorial to download OpenCV, either from prebuilt binaries or from source:
 
-OpenSlide is a C library; as a result, it has to be installed separately from
+http://docs.opencv.org/3.2.0/d5/de5/tutorial_py_setup_in_windows.html
+
+##### 2.3 Installing C Libraries (Mac OS X)  <a class ="anchor" id="2.3"></a>
+
+OpenSlide and OpenCV are C libraries; as a result, they have to be installed separately from
 the conda environment, which contains all of the python dependencies.
-
-If you are using MacPorts, simply enter the following in the terminal:
-
-<code>port install openslide</code>
 
 If you are using Homebrew, enter the following in the terminal:
 
+<code>brew install opencv</code>
+
 <code>brew install openslide</code>
 
-OpenSlide should now be installed in your anaconda environment.
+OpenSlide and OpenCV should now be installed in your anaconda environment.
 
 ##### 2.4 Launching Jupyter Notebook  <a class ="anchor" id="2.4"></a>
 
