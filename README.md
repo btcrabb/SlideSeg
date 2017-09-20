@@ -45,6 +45,10 @@ SlideSeg runs on Python 2.7 and depends on the following libraries: <br>
 The libraries can be installed using:
 
 <code>pip install slideseg</code>
+
+If pip isn't installed, you may have to enter the following before installing slideseg (OS X):
+
+<code>sudo easy_install pip</code><br>
  
 If you are using the preconfigured SlideSeg anaconda environment, these dependencies will already be installed. SlideSeg also depends on several C libraries; see section [2.2](#2.2) (windows) and section [2.3](#2.2) (Mac OS X) for installation instructions.  <br>
 
