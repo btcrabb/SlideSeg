@@ -1,8 +1,6 @@
 # ******************************************************************************
-# SPAWAR, Systems Center Pacific
-# Created August 1, 2017
 # Author: Brendan Crabb <brendancrabb8388@pointloma.edu>
-#
+# Created August 1, 2017
 # ******************************************************************************
 
 # Import necessary packages
