@@ -1,7 +1,7 @@
 # SlideSeg
 
+Author: Brendan Crabb <brendancrabb8388@pointloma.edu> <br>
 Created August 1, 2017 <br>
-Author: Brendan Crabb <brendancrabb8388@pointloma.edu> 
 <hr>
 
 Welcome to SlideSeg, a python module that allows you to segment whole slide images into usable image
