@@ -1,6 +1,5 @@
 # SlideSeg
 
-Spawar, Systems Center Pacific <br>
 Created August 1, 2017 <br>
 Author: Brendan Crabb <brendancrabb8388@pointloma.edu> 
 <hr>
