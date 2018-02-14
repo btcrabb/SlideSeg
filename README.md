@@ -153,8 +153,6 @@ SlideSeg can read annotations in the following formats: <br>
  SlideSeg depends on the following parameters:
  
 <p style="margin-left: 40px">
-<b>single_slide:</b> True if using one image only, False if a folder of images is being used <br>
-
 <b>slide_path:</b> Path to the folder of slide images <br>
 
 <b>xml_path:</b> Path to the folder of xml files <br>

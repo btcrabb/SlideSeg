@@ -13,7 +13,7 @@ def main():
     params = slideseg.load_parameters('Parameters.txt')
     print('running __main__ with parameters: {0}'.format(params))
 
-    if str2bool(params["single_slide"]) is True:
+    if not os.path.isdir(params["slide_path"]):
         path, filename = os.path.split(params["slide_path"])
         xpath, xml_filename = os.path.split(params["xml_path"])
         params["slide_path"] = path
