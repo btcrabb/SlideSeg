@@ -7,6 +7,10 @@ Created August 1, 2017 <br>
 Welcome to SlideSeg, a python module that allows you to segment whole slide images into usable image
 chips for deep learning. Image masks for each chip are generated from associated markup and annotation files.
 
+If you use this code for research purposes, please cite the following in your paper: 
+
+Brendan Crabb, Niels Olson, "SlideSeg: a Python module for the creation of annotated image repositories from whole slide images", Proc. SPIE 10581, Medical Imaging 2018: Digital Pathology, 105811C (6 March 2018); doi: 10.1117/12.2300262; https://doi.org/10.1117/12.2300262
+
 ## Table of Contents
 [User Guide](#user-guide)
 
