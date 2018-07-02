@@ -239,9 +239,8 @@ def ensuredirectory(dest):
     :param dest: Directory to ensure.
     :return: new directory if it did not previously exist.
     """
-    directory = os.path.dirname(dest)
-    if not os.path.exists(directory):
-        os.makedirs(directory)
+    if not os.path.exists(dest):
+        os.makedirs(dest)
 
 
 def attachtags(path, keys):
