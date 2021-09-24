@@ -11,6 +11,10 @@ If you use this code for research purposes, please cite the following in your pa
 
 Brendan Crabb, Niels Olson, "SlideSeg: a Python module for the creation of annotated image repositories from whole slide images", Proc. SPIE 10581, Medical Imaging 2018: Digital Pathology, 105811C (6 March 2018); doi: 10.1117/12.2300262; https://doi.org/10.1117/12.2300262
 
+## Updated Python 3 Version
+
+For a version of SlideSeg compatible with python 3, please see https://github.com/abcsFrederick/SlideSeg3. Moreover, this version also support multiprocessing, drastically decreasing required processing times.
+
 ## Table of Contents
 [User Guide](#user-guide)
 
