@@ -1,6 +1,6 @@
 # SlideSeg
 
-Author: Brendan Crabb <brendancrabb@gmail.com <br>
+Author: Brendan Crabb <brendancrabb@gmail.com><br>
 Created August 1, 2017 <br>
 <hr>
 
